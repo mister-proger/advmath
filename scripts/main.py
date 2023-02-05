@@ -6,7 +6,6 @@ def multipliers(number, all = None, one = None):
         for n in range(1, number + 1):
             if number % n == 0:
                 list_multipliers.append(n)
-        return list_multipliers
     else:
         n = 2
         while number != 1:
@@ -15,9 +14,9 @@ def multipliers(number, all = None, one = None):
                 number = number // n
             else:
                 n += 1
-        if len(list_multipliers) == 1 and one:
-            list_multipliers.insert(0, 1)
-        return list_multipliers
+    if len(list_multipliers) == 1 and one:
+           list_multipliers.insert(0, 1)
+    return list_multipliers
 
 def gcd(arg):
     if type(arg) == list:
