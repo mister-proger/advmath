@@ -33,3 +33,23 @@ def gcd(arg):
                             (arg[tag])[a], (arg[tag + 1])[b] = 1, 1
                 arg[tag], arg[tag + 1] = 1, list_mul
         return supportlib.mul(arg[-1])
+
+def scm(arg, debug = False):
+    for n in range(len(arg)):
+        arg.insert(n, multipliers(arg.pop(n)))
+        if debug:
+            print('arg:', arg)
+    while arg[-2] != 1:
+        for tag in range(len(arg) - 1):
+            list_mul = []
+            if debug:
+                print('tag:', tag, '| arg:', arg)
+            for a in range(len(arg[tag])):
+                for b in range(len(arg[tag + 1])):
+                    if (arg[tag])[a] == (arg[tag + 1])[b]:
+                        list_mul.append((arg[tag])[a])
+                        (arg[tag])[a], (arg[tag + 1])[b] = 1, 1
+                    if debug:
+                        print('a:', a, '| b:', b, '| tag:', tag, '| arg:', arg, '| list_mul:', list_mul)
+            arg[tag], arg[tag + 1] = 1, multipliers(supportlib.mul(arg[tag]) * supportlib.mul(arg[tag + 1]) * supportlib.mul(list_mul))
+    return supportlib.mul(arg[-1])
