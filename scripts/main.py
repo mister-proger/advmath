@@ -19,7 +19,7 @@ def multipliers(number, all = None, one = None):
             list_multipliers.insert(0, 1)
         return list_multipliers
 
-def lcm(arg):
+def gcd(arg):
     if type(arg) == list:
         for n in range(len(arg)):
             arg.insert(n, multipliers(arg.pop(n), one = True))
