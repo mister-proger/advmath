@@ -34,5 +34,5 @@ def e(*imp):
         imp = imp[0]
     return_e = 0
     for n in range(imp):
-        return_e = return_e + 1 / supportlib.factorial(n)
+        return_e = return_e + 1 / main.factorial(n)
     return round(return_e, imp)
