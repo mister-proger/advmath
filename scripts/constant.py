@@ -1,3 +1,5 @@
+import multipliers
+
 def pi(*imp):
     if not imp:
         imp = 4
@@ -17,3 +19,20 @@ def pi(*imp):
         else:
             int_set_pi = (int_set_pi - 2) * -1
     return round(4 * return_pi, len(str(imp)) - 2)
+
+def tau(*imp):
+    if not imp:
+        imp = 4
+    else:
+        imp = imp[0]
+    return round(pi(imp), imp)
+
+def e(*imp):
+    if not imp:
+        imp = 50
+    else:
+        imp = imp[0]
+    return_e = 0
+    for n in range(imp):
+        return_e = return_e + 1 / supportlib.factorial(n)
+    return round(return_e, imp)
