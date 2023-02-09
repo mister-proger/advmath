@@ -1,4 +1,4 @@
-import multipliers
+import main
 
 def pi(*imp):
     if not imp:
