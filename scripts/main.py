@@ -18,6 +18,12 @@ def multipliers(number, all = None, one = None):
            list_multipliers.insert(0, 1)
     return list_multipliers
 
+def factorial(number):
+    return_number = 1
+    for n in range(1, number + 1):
+        return_number *= n
+    return return_number
+
 def gcd(arg):
     if type(arg) == list:
         for n in range(len(arg)):
