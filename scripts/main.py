@@ -1,9 +1,8 @@
 def mul(*args):
     if type(list(args)[0]) == list:
         return_number = 1
-        list_number = list(args)[0]
-        for n in range(len(list_number)):
-            return_number *= list_number[n]
+        for n in range(len(list(args)[0])):
+            return_number *= list(args)[0][n]
         return return_number
     for n in range(len(list(args))):
         if not type(list(args)[n]) == int:
@@ -14,8 +13,20 @@ def mul(*args):
         return_number *= list(args)[n]
     return return_number
 
-def deg(*args):
-    return None
+def sum(*args):
+    if type(list(args)[0]) == list:
+        return_number = 0
+        for n in range(len(list(args)[0])):
+            return_number += list(args)[0][n]
+        return return_number
+    for n in range(len(list(args))):
+        if not type(list(args)[n]) == int:
+            print('Ошибка: аргумент ', str(list(args)[n]), 'не является числом.')
+            return None
+    return_number = 0
+    for n in range(len(list(args))):
+        return_number += list(args)[n]
+    return return_number
 
 def multipliers(number, **kwargs):
     if not number:
@@ -36,8 +47,8 @@ def multipliers(number, **kwargs):
                 number = number // n
             else:
                 n += 1
-    if len(list_multipliers) == 1 and kwargs.get('one', False):
-           list_multipliers.insert(0, 1)
+    if kwargs.get('one', False):
+        list_multipliers.insert(0, 1)
     return list_multipliers
 
 def factorial(number):
@@ -45,6 +56,17 @@ def factorial(number):
     for n in range(1, number + 1):
         return_number *= n
     return return_number
+
+def dablfactorial(number):
+    return_number = 1
+    if number % 2 == 0:
+        for n in range(2, number + 1, 2):
+            return_number *= n
+        return return_number
+    else:
+        for n in range(1, number + 1, 2):
+            return_number *= n
+        return return_number
 
 def gcd(arg):
     if type(arg) == list:
