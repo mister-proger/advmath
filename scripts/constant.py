@@ -1,24 +1,12 @@
-import main
+from main import factorial
+import decimal
 
-def pi(*imp):
-    if not imp:
-        imp = 4
-    else:
-        imp = imp[0]
-    rel_imp = '1'
-    for n in range(imp + 1):
-        rel_imp = rel_imp + '0'
-    imp = int(rel_imp)
-    del rel_imp
-    return_pi = 0
-    int_set_pi = 1
-    for n in range(imp):
-        return_pi += 1 / int_set_pi
-        if int_set_pi > 0:
-            int_set_pi = (int_set_pi + 2) * -1
-        else:
-            int_set_pi = (int_set_pi - 2) * -1
-    return round(4 * return_pi, len(str(imp)) - 2)
+def pi(precision):
+    decimal.getcontext().prec = precision + 1
+    pi = decimal.Decimal(0)
+    for k in range(precision):
+        pi += (decimal.Decimal(1) / (16 ** k)) * ((decimal.Decimal(4) / (8 * k + 1)) - (decimal.Decimal(2) / (8 * k + 4)) - (decimal.Decimal(1) / (8 * k + 5)) - (decimal.Decimal(1) / (8 * k + 6)))
+    return pi
 
 def tau(*imp):
     if not imp:
