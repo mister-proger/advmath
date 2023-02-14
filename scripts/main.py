@@ -1,11 +1,33 @@
-import supportlib
+def mul(*args):
+    if type(list(args)[0]) == list:
+        return_number = 1
+        list_number = list(args)[0]
+        for n in range(len(list_number)):
+            return_number *= list_number[n]
+        return return_number
+    for n in range(len(list(args))):
+        if not type(list(args)[n]) == int:
+            print('Ошибка: аргумент ', str(list(args)[n]), 'не является числом.')
+            return None
+    return_number = 1
+    for n in range(len(list(args))):
+        return_number *= list(args)[n]
+    return return_number
 
-def multipliers(number, all = None, one = None):
+def deg(*args):
+    return None
+
+def multipliers(number, **kwargs):
+    if not number:
+        print('Ошибка: ожидалось число аргументов больше 0')
+        return None
     list_multipliers = []
-    if all:
+    if kwargs.get('all', False):
         for n in range(1, number + 1):
             if number % n == 0:
                 list_multipliers.append(n)
+                number //= n
+        return list_multipliers
     else:
         n = 2
         while number != 1:
@@ -14,7 +36,7 @@ def multipliers(number, all = None, one = None):
                 number = number // n
             else:
                 n += 1
-    if len(list_multipliers) == 1 and one:
+    if len(list_multipliers) == 1 and kwargs.get('one', False):
            list_multipliers.insert(0, 1)
     return list_multipliers
 
@@ -37,7 +59,7 @@ def gcd(arg):
                             list_mul.append((arg[tag])[a])
                             (arg[tag])[a], (arg[tag + 1])[b] = 1, 1
                 arg[tag], arg[tag + 1] = 1, list_mul
-        return supportlib.mul(arg[-1])
+        return mul(arg[-1])
 
 def scm(arg, debug = False):
     for n in range(len(arg)):
@@ -56,5 +78,5 @@ def scm(arg, debug = False):
                         (arg[tag])[a], (arg[tag + 1])[b] = 1, 1
                     if debug:
                         print('a:', a, '| b:', b, '| tag:', tag, '| arg:', arg, '| list_mul:', list_mul)
-            arg[tag], arg[tag + 1] = 1, multipliers(supportlib.mul(arg[tag]) * supportlib.mul(arg[tag + 1]) * supportlib.mul(list_mul))
-    return supportlib.mul(arg[-1])
+            arg[tag], arg[tag + 1] = 1, multipliers(mul(arg[tag]) * mul(arg[tag + 1]) * mul(list_mul))
+    return mul(arg[-1])
